@@ -45,7 +45,7 @@ public class Game {
     //método para guardar preguntas en array list según categoría
     public void sortQuestions(){
         ArrayList<List> listObtained = new ArrayList<>();
-        listObtained=FileOperations.readFile();
+        listObtained=FileOperations.ReadFile();
         for (List<String> temp: listObtained) {
              if(temp.get(5).equals("1")){
                  categoryOne.add(temp);
@@ -59,6 +59,16 @@ public class Game {
                  categoryFive.add(temp);
              }
         }
+    }
+
+    //método para verificar que haya el mínimo de preguntas requeridas
+    public boolean minimumNumberQuestions(){
+        boolean minimum= false;
+        if(categoryOne.size()>=5 && categoryTwo.size()>=5 && categoryThree.size()>=5 &&
+                categoryFour.size()>=5 && categoryFive.size()>=5){
+            minimum=true;
+        }
+        return minimum;
     }
 
     public ArrayList<List> getCategoryOne() {

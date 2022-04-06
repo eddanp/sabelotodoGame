@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 public class FileOperations {
     //método crear archivo "questions.txt" compuesto con las preguntas predefinidas en la clase "PredefinedQuestions"
-    public static void createPredefinedFile(String[][] questions){
+    public static void createPredefinedFile(String[][] questions) {
         File file = new File("questions.txt");
-        if(!file.exists() && !file.isDirectory()) {
+        if (!file.exists() && !file.isDirectory()) {
             FileWriter writer = null;
             try {
                 writer = new FileWriter("questions.txt");
@@ -36,13 +36,13 @@ public class FileOperations {
     }
 
     //leer archivo de texto "questions.txt" y guardar en array list
-    public static ArrayList<List> readFile(){
+    public static ArrayList<List> ReadFile() {
         File file = new File("questions.txt");
         ArrayList<List> questions = new ArrayList<>();
         Scanner scan;
         try {
             scan = new Scanner(file);
-            while (scan.hasNextLine()){
+            while (scan.hasNextLine()) {
                 String line = scan.nextLine();
                 Scanner delimiter = new Scanner(line);
                 delimiter.useDelimiter("\\s* - \\s*");
@@ -57,9 +57,41 @@ public class FileOperations {
                 delimiter.close();
             }
             scan.close();
-        }catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         return questions;
+    }
+
+    public static void AddQuestions(ArrayList<String> questions) {
+        File file = new File("questions.txt");
+        FileWriter writer = null;
+        try {
+            if(file.exists() && !file.isDirectory()){
+                writer = new FileWriter("questions.txt", true);
+            }else{
+                writer = new FileWriter("questions.txt");
+            }
+            BufferedWriter bufer = new BufferedWriter(writer);
+            writer.write(questions.get(0) + "  -  " + questions.get(1) + "  -  " + questions.get(2) + "  -  " +
+                    questions.get(3) + "  -  " + questions.get(4) + "  -  " + questions.get(5) + "  -  ");
+            bufer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    //método eliminar archivo de banco de preguntas "questions.txt"
+    public static void DeleteFile() {
+        File file = new File("questions.txt");
+        file.delete();
     }
 }

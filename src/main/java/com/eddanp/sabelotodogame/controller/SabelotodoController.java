@@ -53,14 +53,18 @@ public class SabelotodoController implements Initializable {
             historyButton.setDisable(true);
             predefinedQuestionsButton.setDisable(false);
             deleteFileButton.setDisable(true);
-        }else{
+        }else {
             predefinedQuestionsButton.setDisable(true);
             game.sortQuestions();
+            boolean minimum = game.minimumNumberQuestions();
             categoryOneText.setText(Integer.toString(game.getCategoryOne().size()));
             categoryTwoText.setText(Integer.toString(game.getCategoryTwo().size()));
             categoryThreeText.setText(Integer.toString(game.getCategoryThree().size()));
             categoryFourText.setText(Integer.toString(game.getCategoryFour().size()));
             categoryFiveText.setText(Integer.toString(game.getCategoryFive().size()));
+            if(!minimum){
+                gameButton.setDisable(true);
+            }
         }
     }
 
