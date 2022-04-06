@@ -55,6 +55,12 @@ public class SabelotodoController implements Initializable {
             deleteFileButton.setDisable(true);
         }else{
             predefinedQuestionsButton.setDisable(true);
+            game.sortQuestions();
+            categoryOneText.setText(Integer.toString(game.getCategoryOne().size()));
+            categoryTwoText.setText(Integer.toString(game.getCategoryTwo().size()));
+            categoryThreeText.setText(Integer.toString(game.getCategoryThree().size()));
+            categoryFourText.setText(Integer.toString(game.getCategoryFour().size()));
+            categoryFiveText.setText(Integer.toString(game.getCategoryFive().size()));
         }
     }
 
@@ -67,10 +73,12 @@ public class SabelotodoController implements Initializable {
     //método generar archivo de preguntas predefinidas
     public void onPredefinedQuestionsFileClick(ActionEvent event){
         game.predefinedQuestionsFile();
+        game.sortQuestions();
         categoryOneText.setText(Integer.toString(game.getCategoryOne().size()));
         categoryTwoText.setText(Integer.toString(game.getCategoryTwo().size()));
         categoryThreeText.setText(Integer.toString(game.getCategoryThree().size()));
         categoryFourText.setText(Integer.toString(game.getCategoryFour().size()));
         categoryFiveText.setText(Integer.toString(game.getCategoryFive().size()));
+        predefinedQuestionsButton.setDisable(true);
     }
 }
