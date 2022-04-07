@@ -1,0 +1,137 @@
+@startuml
+class com.eddanp.sabelotodogame.SabelotodoApplication {
++ void start(Stage)
++ {static} void main(String[])
+}
+class com.eddanp.sabelotodogame.model.PredefinedQuestions {
+- String[][] questions
++ String[][] getQuestions()
+}
+class com.eddanp.sabelotodogame.facade.Game {
+- String name
+~ int totalScore
+~ int round
+~ int question
+~ int n
+~ ArrayList<List> categoryOne
+~ ArrayList<List> categoryTwo
+~ ArrayList<List> categoryThree
+~ ArrayList<List> categoryFour
+~ ArrayList<List> categoryFive
++ <<Create>> Game()
++ boolean checkFileQuestions()
++ void predefinedQuestionsFile()
++ void sortQuestions()
++ boolean minimumNumberQuestions()
++ void addQuestions(ArrayList<String>)
++ void deleteQuestionsFile()
++ ArrayList<Integer> randomQuestions(int)
++ ArrayList<Integer> randomOptions()
++ void scoreGame()
++ String readHistoryFile()
++ void historyFile()
++ void deleteHistoryFile()
++ int getTotalScore()
++ int getRound()
++ int getQuestion()
++ int getN()
++ String getName()
++ void setName(String)
++ ArrayList<List> getCategoryOne()
++ ArrayList<List> getCategoryTwo()
++ ArrayList<List> getCategoryThree()
++ ArrayList<List> getCategoryFour()
++ ArrayList<List> getCategoryFive()
+}
+class com.eddanp.sabelotodogame.model.Score {
+- int[] scoreOne
+- int[] scoreTwo
+- int[] scoreThree
+- int[] scoreFour
+- int[] scoreFive
++ int[] getScoreOne()
++ int[] getScoreTwo()
++ int[] getScoreThree()
++ int[] getScoreFour()
++ int[] getScoreFive()
+}
+class com.eddanp.sabelotodogame.controller.SabelotodoController {
+~ Game game
+- ArrayList<Integer> randomQuestions
+- ArrayList<Integer> randomOptions
+- String validator
+~ File historyFile
+~ URL url
+~ ResourceBundle resource
+- AnchorPane initialPanel
+- AnchorPane homePanel
+- AnchorPane registrationPanel
+- AnchorPane gamePanel
+- AnchorPane settingsPanel
+- AnchorPane addQuestionsPanel
+- Button gameButton
+- Button settingsButton
+- Button historyButton
+- Text notificationText
+- Button predefinedQuestionsButton
+- Button generateQuestionsButton
+- Button deleteFileButton
+- Text categoryOneText
+- Text categoryTwoText
+- Text categoryThreeText
+- Text categoryFourText
+- Text categoryFiveText
+- TextArea addQuestionAreaText
+- TextField trueAnswerTextField
+- TextField oneFalseAnswerTextField
+- TextField twoFalseAnswerTextField
+- TextField threeFalseAnswerTextField
+- ComboBox<String> difficultyComboBox
+~ ObservableList<String> itemsDifficultyComboBox
+- TextField nameGamerTextField
+- ComboBox questionsRoundComboBox
+~ ObservableList<Integer> questionsRound
+- Text questionsText
+- Button questionsOneButton
+- Button questionsTwoButton
+- Button questionsThreeButton
+- Button questionsFourButton
+- Text scoreText
+- Text roundText
+- Text questionsNText
+- AnchorPane historyPanel
+- TextArea historyTextArea
++ void initialize(URL,ResourceBundle)
++ void onSettingsButtonClick(ActionEvent)
++ void onPredefinedQuestionsFileClick(ActionEvent)
++ void onGenerateQuestionsButtonClick(ActionEvent)
++ void onReturnHomeButtonClick(ActionEvent)
++ void onCancelAddQuestionButtonClick(ActionEvent)
++ void onDeleteFileButton(ActionEvent)
++ void onAddQuestionButton(ActionEvent)
++ void onGameButtonClick(ActionEvent)
++ void onAcceptGameButtonClick(ActionEvent)
++ void onTwoReturnHomeButtonClick(ActionEvent)
++ void onAnswerOneButtonClick(ActionEvent)
++ void onAnswerTwoButtonClick(ActionEvent)
++ void onAnswerThreeButtonClick(ActionEvent)
++ void onAnswerFourButtonClick(ActionEvent)
++ void onFinishButtonClick(ActionEvent)
++ void onHistoryButtonClick(ActionEvent)
++ void onReturnHistoryHome(ActionEvent)
++ void onDeleteHistoryFile(ActionEvent)
+}
+class com.eddanp.sabelotodogame.model.FileOperations {
++ {static} void createPredefinedFile(String[][])
++ {static} ArrayList<List> readFile()
++ {static} void addQuestions(ArrayList<String>)
++ {static} void deleteFile()
++ {static} void addHistory(String,int)
++ {static} ArrayList<List> readHistoryFile()
++ {static} void deleteHistoryFile()
+}
+
+
+javafx.application.Application <|-- com.eddanp.sabelotodogame.SabelotodoApplication
+javafx.fxml.Initializable <|.. com.eddanp.sabelotodogame.controller.SabelotodoController
+@enduml
