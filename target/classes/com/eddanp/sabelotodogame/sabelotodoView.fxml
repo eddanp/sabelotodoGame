@@ -222,7 +222,7 @@
                   </Text>
                </children>
             </TextFlow>
-            <Button fx:id="questionsOneButton" layoutX="49.0" layoutY="118.0" mnemonicParsing="false" text="Button" textFill="#d71717" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="120.0">
+            <Button fx:id="questionsOneButton" layoutX="49.0" layoutY="118.0" mnemonicParsing="false" onAction="#onAnswerOneButtonClick" text="Button" textFill="#d71717" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="120.0">
                <effect>
                   <Lighting>
                      <bumpInput>
@@ -236,7 +236,7 @@
                <font>
                   <Font name="System Bold" size="11.0" />
                </font></Button>
-            <Button fx:id="questionsTwoButton" layoutX="206.0" layoutY="118.0" mnemonicParsing="false" text="Button" textFill="#d71717" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="120.0">
+            <Button fx:id="questionsTwoButton" layoutX="206.0" layoutY="118.0" mnemonicParsing="false" onAction="#onAnswerTwoButtonClick" text="Button" textFill="#d71717" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="120.0">
                <effect>
                   <Lighting>
                      <bumpInput>
@@ -250,7 +250,7 @@
                <font>
                   <Font name="System Bold" size="11.0" />
                </font></Button>
-            <Button fx:id="questionsThreeButton" layoutX="43.0" layoutY="182.0" mnemonicParsing="false" text="Button" textFill="#d71717" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="170.0">
+            <Button fx:id="questionsThreeButton" layoutX="43.0" layoutY="182.0" mnemonicParsing="false" onAction="#onAnswerThreeButtonClick" text="Button" textFill="#d71717" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="170.0">
                <effect>
                   <Lighting>
                      <bumpInput>
@@ -264,7 +264,7 @@
                <font>
                   <Font name="System Bold" size="11.0" />
                </font></Button>
-            <Button fx:id="questionsFourButton" layoutX="206.0" layoutY="182.0" mnemonicParsing="false" text="Button" textFill="#d71717" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="170.0">
+            <Button fx:id="questionsFourButton" layoutX="206.0" layoutY="182.0" mnemonicParsing="false" onAction="#onAnswerFourButtonClick" text="Button" textFill="#d71717" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="170.0">
                <effect>
                   <Lighting>
                      <bumpInput>
