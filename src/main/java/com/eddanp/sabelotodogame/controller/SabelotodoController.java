@@ -18,10 +18,12 @@ import java.util.ResourceBundle;
 public class SabelotodoController implements Initializable {
 
     // atributos globales
-    Game game = new Game();
+    Game game;
     ArrayList<Integer> randomQuestions;
     ArrayList<Integer> randomOptions;
     String validator;
+    URL url;
+    ResourceBundle resource;
 
     //atributos AnchorPane
     @FXML
@@ -107,6 +109,9 @@ public class SabelotodoController implements Initializable {
     //método ejecutar al inicializar el programa
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        game = new Game();
+        this.url=location;
+        this.resource=resources;
         initialPanel.setVisible(true);
         homePanel.setVisible(true);
         registrationPanel.setVisible(false);
@@ -239,6 +244,8 @@ public class SabelotodoController implements Initializable {
     public void onGameButtonClick(ActionEvent event) {
         homePanel.setVisible(false);
         registrationPanel.setVisible(true);
+        nameGamerTextField.setText("");
+        questionsRoundComboBox.setValue(null);
     }
 
     //método botón aceptar juego
@@ -314,6 +321,9 @@ public class SabelotodoController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Puntaje Obtenido: " + game.getTotalScore() + "/1000");
             alert.showAndWait();
+            gamePanel.setVisible(false);
+            homePanel.setVisible(true);
+            this.initialize(url,resource);
         }
     }
 
@@ -347,6 +357,9 @@ public class SabelotodoController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Puntaje Obtenido: " + game.getTotalScore() + "/1000");
             alert.showAndWait();
+            gamePanel.setVisible(false);
+            homePanel.setVisible(true);
+            this.initialize(url,resource);
         }
     }
 
@@ -380,6 +393,9 @@ public class SabelotodoController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Puntaje Obtenido: " + game.getTotalScore() + "/1000");
             alert.showAndWait();
+            gamePanel.setVisible(false);
+            homePanel.setVisible(true);
+            this.initialize(url,resource);
         }
     }
 
@@ -413,6 +429,9 @@ public class SabelotodoController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Puntaje Obtenido: " + game.getTotalScore() + "/1000");
             alert.showAndWait();
+            gamePanel.setVisible(false);
+            homePanel.setVisible(true);
+            this.initialize(url,resource);
         }
     }
 
