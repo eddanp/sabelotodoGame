@@ -36,7 +36,7 @@ public class FileOperations {
     }
 
     //leer archivo de texto "questions.txt" y guardar en array list
-    public static ArrayList<List> ReadFile() {
+    public static ArrayList<List> readFile() {
         File file = new File("questions.txt");
         ArrayList<List> questions = new ArrayList<>();
         Scanner scan;
@@ -63,7 +63,7 @@ public class FileOperations {
         return questions;
     }
 
-    public static void AddQuestions(ArrayList<String> questions) {
+    public static void addQuestions(ArrayList<String> questions) {
         File file = new File("questions.txt");
         FileWriter writer = null;
         try {
@@ -73,8 +73,8 @@ public class FileOperations {
                 writer = new FileWriter("questions.txt");
             }
             BufferedWriter bufer = new BufferedWriter(writer);
-            writer.write(questions.get(0) + "  -  " + questions.get(1) + "  -  " + questions.get(2) + "  -  " +
-                    questions.get(3) + "  -  " + questions.get(4) + "  -  " + questions.get(5) + "  -  ");
+            writer.write(questions.get(0) + " - " + questions.get(1) + " - " + questions.get(2) + " - " +
+                    questions.get(3) + " - " + questions.get(4) + " - " + questions.get(5) + " - \n");
             bufer.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,7 +90,7 @@ public class FileOperations {
     }
 
     //método eliminar archivo de banco de preguntas "questions.txt"
-    public static void DeleteFile() {
+    public static void deleteFile() {
         File file = new File("questions.txt");
         file.delete();
     }

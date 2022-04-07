@@ -1,15 +1,17 @@
 package com.eddanp.sabelotodogame.controller;
 
 import com.eddanp.sabelotodogame.facade.Game;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SabelotodoController implements Initializable {
@@ -23,6 +25,7 @@ public class SabelotodoController implements Initializable {
     @FXML private AnchorPane registrationPanel;
     @FXML private AnchorPane gamePanel;
     @FXML private AnchorPane settingsPanel;
+    @FXML private AnchorPane addQuestionsPanel;
 
     //atributos homePanel
     @FXML private Button gameButton;
@@ -39,6 +42,16 @@ public class SabelotodoController implements Initializable {
     @FXML private Text categoryFourText;
     @FXML private Text categoryFiveText;
 
+    //atributos addQuestionsPanel
+    @FXML private TextArea addQuestionAreaText;
+    @FXML private TextField trueAnswerTextField;
+    @FXML private TextField oneFalseAnswerTextField;
+    @FXML private TextField twoFalseAnswerTextField;
+    @FXML private TextField threeFalseAnswerTextField;
+    @FXML private ComboBox<String> difficultyComboBox;
+    ObservableList<String> itemsDifficultyComboBox =
+            FXCollections.observableArrayList("1","2","3","4","5");
+
     //método ejecutar al inicializar el programa
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -47,6 +60,8 @@ public class SabelotodoController implements Initializable {
         registrationPanel.setVisible(false);
         gamePanel.setVisible(false);
         settingsPanel.setVisible(false);
+        addQuestionsPanel.setVisible(false);
+        difficultyComboBox.setItems(itemsDifficultyComboBox);
         boolean existingFile=game.checkFileQuestions();
         if(!existingFile){
             gameButton.setDisable(true);
@@ -84,5 +99,77 @@ public class SabelotodoController implements Initializable {
         categoryFourText.setText(Integer.toString(game.getCategoryFour().size()));
         categoryFiveText.setText(Integer.toString(game.getCategoryFive().size()));
         predefinedQuestionsButton.setDisable(true);
+        deleteFileButton.setDisable(false);
     }
+
+    //método para botón agregar preguntas personalizadas
+    public void onGenerateQuestionsButtonClick(ActionEvent event){
+        settingsPanel.setVisible(false);
+        addQuestionsPanel.setVisible(true);
+        deleteFileButton.setDisable(false);
+    }
+
+    //método para regresar al panel home
+    public void onReturnHomeButtonClick(ActionEvent event){
+        boolean minimum = game.minimumNumberQuestions();
+        if(minimum){
+            gameButton.setDisable(false);
+        }else{
+            gameButton.setDisable(true);
+        }
+        settingsPanel.setVisible(false);
+        homePanel.setVisible(true);
+    }
+
+    //método para botón cancelar agregar pregunta
+    public void onCancelAddQuestionButtonClick(ActionEvent event){
+        addQuestionsPanel.setVisible(false);
+        settingsPanel.setVisible(true);
+    }
+
+    //mŕtodo para boton eliminar banco de preguntas
+    public void onDeleteFileButton(ActionEvent event){
+        game.deleteQuestionsFile();
+        game.sortQuestions();
+        categoryOneText.setText(Integer.toString(game.getCategoryOne().size()));
+        categoryTwoText.setText(Integer.toString(game.getCategoryTwo().size()));
+        categoryThreeText.setText(Integer.toString(game.getCategoryThree().size()));
+        categoryFourText.setText(Integer.toString(game.getCategoryFour().size()));
+        categoryFiveText.setText(Integer.toString(game.getCategoryFive().size()));
+        predefinedQuestionsButton.setDisable(false);
+        deleteFileButton.setDisable(true);
+    }
+
+    //método agregar preguntas personalizadas
+    public void onAddQuestionButton(ActionEvent event){
+        ArrayList<String> tempQuestion = new ArrayList<>();
+        tempQuestion.add(addQuestionAreaText.getText());
+        tempQuestion.add(trueAnswerTextField.getText());
+        tempQuestion.add(oneFalseAnswerTextField.getText());
+        tempQuestion.add(twoFalseAnswerTextField.getText());
+        tempQuestion.add(threeFalseAnswerTextField.getText());
+        tempQuestion.add(difficultyComboBox.getValue());
+        game.addQuestions(tempQuestion);
+        addQuestionAreaText.setText("");
+        trueAnswerTextField.setText("");
+        oneFalseAnswerTextField.setText("");
+        twoFalseAnswerTextField.setText("");
+        threeFalseAnswerTextField.setText("");
+        difficultyComboBox.setValue(null);
+        game.sortQuestions();
+        categoryOneText.setText(Integer.toString(game.getCategoryOne().size()));
+        categoryTwoText.setText(Integer.toString(game.getCategoryTwo().size()));
+        categoryThreeText.setText(Integer.toString(game.getCategoryThree().size()));
+        categoryFourText.setText(Integer.toString(game.getCategoryFour().size()));
+        categoryFiveText.setText(Integer.toString(game.getCategoryFive().size()));
+        predefinedQuestionsButton.setDisable(true);
+    }
+
+    //método botón jugar
+    public void onGameButton(ActionEvent event){
+        homePanel.setVisible(false);
+        registrationPanel.setVisible(true);
+    }
+
+    //método botón aceptar juego
 }

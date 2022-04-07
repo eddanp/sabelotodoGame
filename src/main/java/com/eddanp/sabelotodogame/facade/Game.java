@@ -45,7 +45,12 @@ public class Game {
     //método para guardar preguntas en array list según categoría
     public void sortQuestions(){
         ArrayList<List> listObtained = new ArrayList<>();
-        listObtained=FileOperations.ReadFile();
+        listObtained=FileOperations.readFile();
+        categoryOne.clear();
+        categoryTwo.clear();
+        categoryThree.clear();
+        categoryFour.clear();
+        categoryFive.clear();
         for (List<String> temp: listObtained) {
              if(temp.get(5).equals("1")){
                  categoryOne.add(temp);
@@ -69,6 +74,21 @@ public class Game {
             minimum=true;
         }
         return minimum;
+    }
+
+    //método generar o modificar archivo de preguntas, con preguntas personalizadas
+    public void addQuestions(ArrayList<String> questions){
+        FileOperations.addQuestions(questions);
+    }
+
+    //método eliminar banco de preguntas
+    public void deleteQuestionsFile(){
+        FileOperations.deleteFile();
+        categoryOne.clear();
+        categoryTwo.clear();
+        categoryThree.clear();
+        categoryFour.clear();
+        categoryFive.clear();
     }
 
     public ArrayList<List> getCategoryOne() {
