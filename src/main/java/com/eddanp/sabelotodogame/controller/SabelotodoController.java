@@ -18,6 +18,8 @@ public class SabelotodoController implements Initializable {
 
     // atributos globales
     Game game = new Game();
+    int[] randomQuestions;
+    ArrayList<Integer> randomOptions;
 
     //atributos AnchorPane
     @FXML private AnchorPane initialPanel;
@@ -52,6 +54,20 @@ public class SabelotodoController implements Initializable {
     ObservableList<String> itemsDifficultyComboBox =
             FXCollections.observableArrayList("1","2","3","4","5");
 
+    //atributos panel de registro jugador
+    @FXML private TextField nameGamerTextField;
+    @FXML private ComboBox questionsRoundComboBox;
+    ObservableList<Integer> questionsRound =
+            FXCollections.observableArrayList(1);
+
+    //atributos panel de juego
+    @FXML private Text questionsText;
+    @FXML private Button questionsOneButton;
+    @FXML private Button questionsTwoButton;
+    @FXML private Button questionsThreeButton;
+    @FXML private Button questionsFourButton;
+
+
     //método ejecutar al inicializar el programa
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -62,6 +78,7 @@ public class SabelotodoController implements Initializable {
         settingsPanel.setVisible(false);
         addQuestionsPanel.setVisible(false);
         difficultyComboBox.setItems(itemsDifficultyComboBox);
+        questionsRoundComboBox.setItems(questionsRound);
         boolean existingFile=game.checkFileQuestions();
         if(!existingFile){
             gameButton.setDisable(true);
@@ -166,10 +183,41 @@ public class SabelotodoController implements Initializable {
     }
 
     //método botón jugar
-    public void onGameButton(ActionEvent event){
+    public void onGameButtonClick(ActionEvent event){
         homePanel.setVisible(false);
         registrationPanel.setVisible(true);
     }
 
     //método botón aceptar juego
+    public void onAcceptGameButtonClick(ActionEvent event){
+        registrationPanel.setVisible(false);
+        gamePanel.setVisible(true);
+        game.setName(nameGamerTextField.getText());
+        randomQuestions = game.randomQuestions((int)(questionsRoundComboBox.getValue()));
+        randomOptions=game.randomOptions();
+        for (int i = 0; i < randomQuestions.length; i++) {
+            System.out.println(randomQuestions[i]);
+        }
+        for (int i = 0; i < randomOptions.size(); i++) {
+            System.out.println(randomOptions.get(i));
+        }
+        questionsText.setText((String)(game.getCategoryOne().get(randomQuestions[0]).get(0)));
+        questionsOneButton.setText((String)(game.getCategoryOne().get(randomQuestions[0]).get(randomOptions.get(0))));
+        questionsTwoButton.setText((String)(game.getCategoryOne().get(randomQuestions[0]).get(randomOptions.get(1))));
+        questionsThreeButton.setText((String)(game.getCategoryOne().get(randomQuestions[0]).get(randomOptions.get(2))));
+        questionsFourButton.setText((String)(game.getCategoryOne().get(randomQuestions[0]).get(randomOptions.get(3))));
+    }
+
+    //método bonton volver a home desde panel de registro jugador
+    public void onTwoReturnHomeButtonClick(ActionEvent event){
+        registrationPanel.setVisible(false);
+        homePanel.setVisible(true);
+        nameGamerTextField.setText("");
+        questionsRoundComboBox.setValue(null);
+
+    }
+    //método botón de respuesta 1
+    public void onAnswerOneButtonClick(ActionEvent event){
+
+    }
 }

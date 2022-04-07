@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Game {
     private String name;
-    FileOperations operation;
+    int points=0;
     ArrayList<List> categoryOne;
     ArrayList<List> categoryTwo;
     ArrayList<List> categoryThree;
@@ -89,6 +89,49 @@ public class Game {
         categoryThree.clear();
         categoryFour.clear();
         categoryFive.clear();
+    }
+
+    //metodo obtener preguntas aleatorias por categoria
+    public int[] randomQuestions(int n){
+        int[] random;
+        switch (n){
+            case 1:
+                random = new int[5];
+                random[0]=(int)(Math.random()*categoryOne.size());
+                random[1]=(int)(Math.random()*categoryTwo.size());
+                random[2]=(int)(Math.random()*categoryThree.size());
+                random[3]=(int)(Math.random()*categoryFour.size());
+                random[4]=(int)(Math.random()*categoryFive.size());
+                break;
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            default:
+                random = new int[0];
+        }
+        return random;
+    }
+
+    //método obtener orden aleatorio de respuestas
+    public ArrayList<Integer> randomOptions(){
+        int x=0;
+        ArrayList<Integer> random = new ArrayList<>();
+        while(random.size()!=4){
+            x=(int)(Math.random()*4+1);
+            if(!random.contains(x)){
+                random.add(x);
+            }
+        }
+        return random;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public ArrayList<List> getCategoryOne() {

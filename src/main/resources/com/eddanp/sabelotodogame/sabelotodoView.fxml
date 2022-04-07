@@ -21,7 +21,7 @@
    <children>
       <AnchorPane fx:id="homePanel" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow;" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
          <children>
-            <Button fx:id="gameButton" layoutX="111.0" layoutY="118.0" mnemonicParsing="false" style="-fx-background-color: black;" text="Jugar" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="108.0">
+            <Button fx:id="gameButton" layoutX="111.0" layoutY="118.0" mnemonicParsing="false" onAction="#onGameButtonClick" style="-fx-background-color: black;" text="Jugar" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="108.0">
                <font>
                   <Font size="35.0" />
                </font>
@@ -135,7 +135,7 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <AnchorPane fx:id="registrationPanel" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow;" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+      <AnchorPane fx:id="registrationPanel" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
          <children>
             <Text fill="#cd1111" layoutX="53.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="100.0">
                <font>
@@ -152,7 +152,7 @@
                   <Font name="System Bold" size="30.0" />
                </font>
             </Text>
-            <TextField layoutX="198.0" layoutY="93.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="93.0">
+            <TextField fx:id="nameGamerTextField" layoutX="198.0" layoutY="93.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="93.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -167,7 +167,7 @@
                   </Lighting>
                </effect>
             </TextField>
-            <ComboBox layoutX="368.0" layoutY="151.0" prefWidth="150.0">
+            <ComboBox fx:id="questionsRoundComboBox" layoutX="368.0" layoutY="151.0" prefWidth="150.0">
                <effect>
                   <Lighting>
                      <bumpInput>
@@ -179,7 +179,7 @@
                   </Lighting>
                </effect>
             </ComboBox>
-            <Button layoutX="175.0" layoutY="214.0" mnemonicParsing="false" text="Aceptar" textFill="#101110" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="215.0">
+            <Button layoutX="175.0" layoutY="214.0" mnemonicParsing="false" onAction="#onAcceptGameButtonClick" text="Aceptar" textFill="#101110" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="215.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -194,7 +194,7 @@
                   </Lighting>
                </effect>
             </Button>
-            <Button layoutX="374.0" layoutY="214.0" mnemonicParsing="false" text="Salir" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="215.0">
+            <Button layoutX="374.0" layoutY="214.0" mnemonicParsing="false" onAction="#onTwoReturnHomeButtonClick" text="Volver" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="215.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -375,7 +375,7 @@
             <Button fx:id="returnHomeButton" layoutX="257.0" layoutY="238.0" mnemonicParsing="false" onAction="#onReturnHomeButtonClick" text="Volver" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="addQuestionsPanel" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black; -fx-border-color: yellow;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+      <AnchorPane fx:id="addQuestionsPanel" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black; -fx-border-color: yellow;" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
          <children>
             <Button fx:id="addQuestionButton" layoutX="122.0" layoutY="233.0" mnemonicParsing="false" onAction="#onAddQuestionButton" text="Agregar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="170.0" AnchorPane.topAnchor="230.0">
                <effect>
@@ -427,8 +427,16 @@
                   <Font size="11.0" />
                </font>
             </TextField>
-            <TextField fx:id="twoFalseAnswerTextField" layoutX="89.0" layoutY="191.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="180.0" />
-            <TextField fx:id="threeFalseAnswerTextField" layoutX="327.0" layoutY="185.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="180.0" />
+            <TextField fx:id="twoFalseAnswerTextField" layoutX="89.0" layoutY="191.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="180.0">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="threeFalseAnswerTextField" layoutX="327.0" layoutY="185.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="180.0">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </TextField>
             <Text fill="#db0707" layoutX="339.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Respuesta Incorrecta">
                <font>
                   <Font name="System Bold" size="12.0" />
