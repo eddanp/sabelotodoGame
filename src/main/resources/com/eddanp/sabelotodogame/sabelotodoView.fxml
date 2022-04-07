@@ -19,7 +19,7 @@
 
 <AnchorPane fx:id="initialPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000000; -fx-border-color: yellow; -fx-border-width: 3px;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eddanp.sabelotodogame.controller.SabelotodoController">
    <children>
-      <AnchorPane fx:id="homePanel" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow;" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+      <AnchorPane fx:id="homePanel" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
          <children>
             <Button fx:id="gameButton" layoutX="111.0" layoutY="118.0" mnemonicParsing="false" onAction="#onGameButtonClick" style="-fx-background-color: black;" text="Jugar" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="108.0">
                <font>
@@ -112,6 +112,15 @@
                   </LinearGradient>
                </textFill>
             </Button>
+            <TextFlow layoutX="150.0" layoutY="-43.0" prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <children>
+                  <Text fx:id="notificationText" fill="#f21515" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </TextFlow>
          </children>
       </AnchorPane>
       <Label alignment="CENTER" layoutX="246.0" layoutY="33.0" text="Sabelotodo" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
@@ -480,7 +489,7 @@
             <ComboBox fx:id="difficultyComboBox" layoutX="123.0" layoutY="235.0" prefHeight="24.0" prefWidth="79.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="122.0" AnchorPane.rightAnchor="372.0" AnchorPane.topAnchor="234.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="historyPanel" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+      <AnchorPane fx:id="historyPanel" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow;" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
          <children>
             <Text fill="#00bf4d" layoutX="76.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Historicos de Puntuación" AnchorPane.topAnchor="7.0">
                <font>

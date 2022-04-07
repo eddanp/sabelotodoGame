@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.io.File;
@@ -48,6 +49,7 @@ public class SabelotodoController implements Initializable {
     private Button settingsButton;
     @FXML
     private Button historyButton;
+    @FXML private Text notificationText;
 
     //atributis settingsPanel
     @FXML
@@ -134,7 +136,8 @@ public class SabelotodoController implements Initializable {
         if (!existingFile) {
             gameButton.setDisable(true);
             predefinedQuestionsButton.setDisable(false);
-            deleteFileButton.setDisable(true);
+            deleteFileButton.setDisable(true);notificationText.setFill(Color.RED);
+            notificationText.setText("Agregar Preguntas para Jugar...\nMínimo 5 preguntas por categoría");
         } else {
             predefinedQuestionsButton.setDisable(true);
             game.sortQuestions();
@@ -144,8 +147,12 @@ public class SabelotodoController implements Initializable {
             categoryThreeText.setText(Integer.toString(game.getCategoryThree().size()));
             categoryFourText.setText(Integer.toString(game.getCategoryFour().size()));
             categoryFiveText.setText(Integer.toString(game.getCategoryFive().size()));
+            notificationText.setFill(Color.GREENYELLOW);
+            notificationText.setText("Juega y Diviértete...");
             if (!minimum) {
                 gameButton.setDisable(true);
+                notificationText.setFill(Color.RED);
+                notificationText.setText("Agregar más preguntas...\nMínimo 5 preguntas por categoría");
             }
         }
     }
@@ -181,8 +188,12 @@ public class SabelotodoController implements Initializable {
         boolean minimum = game.minimumNumberQuestions();
         if (minimum) {
             gameButton.setDisable(false);
+            notificationText.setFill(Color.GREENYELLOW);
+            notificationText.setText("Juega y Diviértete...");
         } else {
             gameButton.setDisable(true);
+            notificationText.setFill(Color.RED);
+            notificationText.setText("Agregar Preguntas...\nMínimo 5 preguntas por categoría");
         }
         settingsPanel.setVisible(false);
         homePanel.setVisible(true);
@@ -203,12 +214,11 @@ public class SabelotodoController implements Initializable {
     //mŕtodo para boton eliminar banco de preguntas
     public void onDeleteFileButton(ActionEvent event) {
         game.deleteQuestionsFile();
-        game.sortQuestions();
-        categoryOneText.setText(Integer.toString(game.getCategoryOne().size()));
-        categoryTwoText.setText(Integer.toString(game.getCategoryTwo().size()));
-        categoryThreeText.setText(Integer.toString(game.getCategoryThree().size()));
-        categoryFourText.setText(Integer.toString(game.getCategoryFour().size()));
-        categoryFiveText.setText(Integer.toString(game.getCategoryFive().size()));
+        categoryOneText.setText("0");
+        categoryTwoText.setText("0");
+        categoryThreeText.setText("0");
+        categoryFourText.setText("0");
+        categoryFiveText.setText("0");
         predefinedQuestionsButton.setDisable(false);
         deleteFileButton.setDisable(true);
     }
