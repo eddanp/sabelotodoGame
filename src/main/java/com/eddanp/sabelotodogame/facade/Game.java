@@ -2,6 +2,7 @@ package com.eddanp.sabelotodogame.facade;
 
 import com.eddanp.sabelotodogame.model.FileOperations;
 import com.eddanp.sabelotodogame.model.PredefinedQuestions;
+import com.eddanp.sabelotodogame.model.Score;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -9,7 +10,10 @@ import java.util.List;
 
 public class Game {
     private String name;
-    int points=0;
+    int totalScore=0;
+    int round=0;
+    int question=0;
+    int n;
     ArrayList<List> categoryOne;
     ArrayList<List> categoryTwo;
     ArrayList<List> categoryThree;
@@ -93,6 +97,7 @@ public class Game {
 
     //metodo obtener preguntas aleatorias por categoria
     public int[] randomQuestions(int n){
+        this.n=n;
         int[] random;
         switch (n){
             case 1:
@@ -115,6 +120,8 @@ public class Game {
 
     //método obtener orden aleatorio de respuestas
     public ArrayList<Integer> randomOptions(){
+        question=question+1;
+        this.scoreGame();
         int x=0;
         ArrayList<Integer> random = new ArrayList<>();
         while(random.size()!=4){
@@ -124,6 +131,62 @@ public class Game {
             }
         }
         return random;
+    }
+
+    //método obtener puntuacion y tonda actual
+    public void scoreGame(){
+        Score score=new Score();
+        switch (n){
+            case 1:
+                int[] scoreOne= score.getScoreOne();
+                totalScore=totalScore+scoreOne[question];
+                round=round+1;
+                break;
+            case 2:
+                if(question==1 || question==3 || question==5 || question==7 || question==9){
+                    round=round+1;
+                }
+                int[] scoreTwo= score.getScoreTwo();
+                totalScore=totalScore+scoreTwo[question];
+                break;
+            case 3:
+                if(question==1 || question==4 || question==7 || question==10 || question==13){
+                    round=round+1;
+                }
+                int[] scoreThree= score.getScoreThree();
+                totalScore=totalScore+scoreThree[question];
+                break;
+            case 4:
+                if(question==1 || question==5 || question==9 || question==13 || question==17) {
+                    round = round + 1;
+                }
+                int[] scoreFour= score.getScoreFour();
+                totalScore=totalScore+scoreFour[question];
+                break;
+            case 5:
+                if(question==1 || question==6 || question==11 || question==16 || question==21) {
+                    round = round + 1;
+                }
+                int[] scoreFive= score.getScoreFive();
+                totalScore=totalScore+scoreFive[question];
+                break;
+        }
+    }
+
+    public int getTotalScore() {
+        return totalScore;
+    }
+
+    public int getRound() {
+        return round;
+    }
+
+    public int getQuestion() {
+        return question;
+    }
+
+    public int getN() {
+        return n;
     }
 
     public String getName() {

@@ -66,6 +66,8 @@ public class SabelotodoController implements Initializable {
     @FXML private Button questionsTwoButton;
     @FXML private Button questionsThreeButton;
     @FXML private Button questionsFourButton;
+    @FXML private Text scoreText;
+    @FXML private Text roundText;
 
 
     //método ejecutar al inicializar el programa
@@ -206,6 +208,8 @@ public class SabelotodoController implements Initializable {
         questionsTwoButton.setText((String)(game.getCategoryOne().get(randomQuestions[0]).get(randomOptions.get(1))));
         questionsThreeButton.setText((String)(game.getCategoryOne().get(randomQuestions[0]).get(randomOptions.get(2))));
         questionsFourButton.setText((String)(game.getCategoryOne().get(randomQuestions[0]).get(randomOptions.get(3))));
+        scoreText.setText("Puntaje: "+game.getTotalScore());
+        roundText.setText("Ronda: "+game.getRound());
     }
 
     //método bonton volver a home desde panel de registro jugador

@@ -135,7 +135,7 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <AnchorPane fx:id="registrationPanel" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+      <AnchorPane fx:id="registrationPanel" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow;" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
          <children>
             <Text fill="#cd1111" layoutX="53.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="100.0">
                <font>
@@ -211,9 +211,9 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="gamePanel" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black; -fx-border-color: yellow;" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+      <AnchorPane fx:id="gamePanel" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black; -fx-border-color: yellow;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
          <children>
-            <TextFlow layoutX="29.0" layoutY="-47.0" lineSpacing="1.5" prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+            <TextFlow layoutX="29.0" layoutY="-47.0" lineSpacing="1.5" prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
                <children>
                   <Text fx:id="questionsText" fill="#089c06" strokeType="OUTSIDE" strokeWidth="0.0" text="¿Questions?" textAlignment="CENTER" textOrigin="CENTER">
                      <font>
@@ -292,6 +292,16 @@
                <font>
                   <Font name="System Bold" size="16.0" />
                </font></Button>
+            <Text fx:id="roundText" fill="#d70303" layoutX="521.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ronda:" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="scoreText" fill="#d70303" layoutX="8.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Puntaje:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="settingsPanel" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow;" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
