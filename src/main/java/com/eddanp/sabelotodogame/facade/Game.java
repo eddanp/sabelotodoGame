@@ -29,7 +29,7 @@ public class Game {
         categoryFive = new ArrayList<>();
     }
 
-    //método verificar si existe archivo de preguntas y si cuenta con mínimo 5 preguntas por categoría
+    //método verificar si existe archivo
     public boolean checkFileQuestions(){
         boolean existingFile=false;
         File questionsFile = new File("questions.txt");
@@ -295,6 +295,20 @@ public class Game {
                 totalScore = totalScore + scoreFive[question-1];
             }
         }
+    }
+    //metodo leer archio de historicos
+    public String readHistoryFile(){
+        String history="";
+        ArrayList<List> temp = FileOperations.readHistoryFile();
+        for (List<String> list:temp) {
+            history=history+list.get(0)+" - "+list.get(1)+"\n";
+        }
+        return history;
+    }
+
+    //método guardar historico
+    public void historyFile(){
+        FileOperations.addHistory(name,totalScore);
     }
 
     public int getTotalScore() {

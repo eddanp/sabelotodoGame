@@ -63,6 +63,7 @@ public class FileOperations {
         return questions;
     }
 
+    //metodo crear o modificar archivo preguntas a partir de preguntas personalizadas
     public static void addQuestions(ArrayList<String> questions) {
         File file = new File("questions.txt");
         FileWriter writer = null;
@@ -92,6 +93,62 @@ public class FileOperations {
     //método eliminar archivo de banco de preguntas "questions.txt"
     public static void deleteFile() {
         File file = new File("questions.txt");
+        file.delete();
+    }
+
+    //metodo crear o modificar archivo historicos
+    public static void addHistory(String name, int score) {
+        File file = new File("history.txt");
+        FileWriter writer = null;
+        try {
+            if(file.exists() && !file.isDirectory()){
+                writer = new FileWriter("history.txt", true);
+            }else{
+                writer = new FileWriter("history.txt");
+            }
+            BufferedWriter bufer = new BufferedWriter(writer);
+            writer.write(name+" - " +score+" - \n");
+            bufer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    //leer archivo de texto "history.txt" y guardar en array list
+    public static ArrayList<List> readHistoryFile() {
+        File file = new File("history.txt");
+        ArrayList<List> history = new ArrayList<>();
+        Scanner scan;
+        try {
+            scan = new Scanner(file);
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine();
+                Scanner delimiter = new Scanner(line);
+                delimiter.useDelimiter("\\s* - \\s*");
+                ArrayList<String> temp = new ArrayList<String>();
+                temp.add(delimiter.next());
+                temp.add(delimiter.next());
+                history.add(temp);
+                delimiter.close();
+            }
+            scan.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return history;
+    }
+
+    //método eliminar archivo de historicos jugadores "history.txt"
+    public static void deleteHistoryFile() {
+        File file = new File("history.txt");
         file.delete();
     }
 }

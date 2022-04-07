@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +20,10 @@ public class SabelotodoController implements Initializable {
 
     // atributos globales
     Game game;
-    ArrayList<Integer> randomQuestions;
-    ArrayList<Integer> randomOptions;
-    String validator;
+    private ArrayList<Integer> randomQuestions;
+    private ArrayList<Integer> randomOptions;
+    private String validator;
+    File historyFile;
     URL url;
     ResourceBundle resource;
 
@@ -106,10 +108,16 @@ public class SabelotodoController implements Initializable {
     private Text roundText;
     @FXML private Text questionsNText;
 
+    //atributos panel de historicos
+    @FXML private AnchorPane historyPanel;
+    @FXML private TextArea historyTextArea;
+
 
     //método ejecutar al inicializar el programa
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        historyFile = new File("history.txt");
+        historyButton.setDisable(!historyFile.exists());
         game = new Game();
         this.url = location;
         this.resource = resources;
@@ -119,12 +127,12 @@ public class SabelotodoController implements Initializable {
         gamePanel.setVisible(false);
         settingsPanel.setVisible(false);
         addQuestionsPanel.setVisible(false);
+        historyPanel.setVisible(false);
         difficultyComboBox.setItems(itemsDifficultyComboBox);
         questionsRoundComboBox.setItems(questionsRound);
         boolean existingFile = game.checkFileQuestions();
         if (!existingFile) {
             gameButton.setDisable(true);
-            historyButton.setDisable(true);
             predefinedQuestionsButton.setDisable(false);
             deleteFileButton.setDisable(true);
         } else {
@@ -226,7 +234,7 @@ public class SabelotodoController implements Initializable {
             tempQuestion.add(difficultyComboBox.getValue());
             game.addQuestions(tempQuestion);
 
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("***** EXCELENTE *****");
             alert.setHeaderText(null);
             alert.setContentText("Pregunta agregada con éxito");
@@ -313,6 +321,7 @@ public class SabelotodoController implements Initializable {
                 alert.setHeaderText("Eres un Ganador");
                 alert.setContentText("Puntaje Obtenido: " + game.getTotalScore() + "/1000");
                 alert.showAndWait();
+                game.historyFile();
                 this.initialize(url, resource);
             }else {
                 temp = switch (game.getRound()) {
@@ -341,6 +350,7 @@ public class SabelotodoController implements Initializable {
             alert.showAndWait();
             gamePanel.setVisible(false);
             homePanel.setVisible(true);
+            game.historyFile();
             this.initialize(url, resource);
         }
     }
@@ -359,6 +369,7 @@ public class SabelotodoController implements Initializable {
                 alert.setHeaderText("Eres un Ganador");
                 alert.setContentText("Puntaje Obtenido: " + game.getTotalScore() + "/1000");
                 alert.showAndWait();
+                game.historyFile();
                 this.initialize(url, resource);
             }else {
                 temp = switch (game.getRound()) {
@@ -387,6 +398,7 @@ public class SabelotodoController implements Initializable {
             alert.showAndWait();
             gamePanel.setVisible(false);
             homePanel.setVisible(true);
+            game.historyFile();
             this.initialize(url, resource);
         }
     }
@@ -404,6 +416,7 @@ public class SabelotodoController implements Initializable {
                 alert.setHeaderText("Eres un Ganador");
                 alert.setContentText("Puntaje Obtenido: " + game.getTotalScore() + "/1000");
                 alert.showAndWait();
+                game.historyFile();
                 this.initialize(url, resource);
             }else {
                 System.out.println(c);
@@ -433,6 +446,7 @@ public class SabelotodoController implements Initializable {
             alert.showAndWait();
             gamePanel.setVisible(false);
             homePanel.setVisible(true);
+            game.historyFile();
             this.initialize(url, resource);
         }
     }
@@ -451,6 +465,7 @@ public class SabelotodoController implements Initializable {
                 alert.setHeaderText("Eres un Ganador");
                 alert.setContentText("Puntaje Obtenido: " + game.getTotalScore() + "/1000");
                 alert.showAndWait();
+                game.historyFile();
                 this.initialize(url, resource);
             }else {
                 temp = switch (game.getRound()) {
@@ -479,8 +494,22 @@ public class SabelotodoController implements Initializable {
             alert.showAndWait();
             gamePanel.setVisible(false);
             homePanel.setVisible(true);
+            game.historyFile();
             this.initialize(url, resource);
         }
+    }
+
+    //método boton historial
+    public void onHistoryButtonClick(ActionEvent event){
+        homePanel.setVisible(false);
+        historyPanel.setVisible(true);
+        historyTextArea.setText(game.readHistoryFile());
+    }
+
+    //método regresar a home desde historico
+    public void onReturnHistoryHome(ActionEvent event){
+        historyPanel.setVisible(false);
+        homePanel.setVisible(true);
     }
 
 }
