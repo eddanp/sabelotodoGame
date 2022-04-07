@@ -104,6 +104,7 @@ public class SabelotodoController implements Initializable {
     private Text scoreText;
     @FXML
     private Text roundText;
+    @FXML private Text questionsNText;
 
 
     //método ejecutar al inicializar el programa
@@ -285,6 +286,7 @@ public class SabelotodoController implements Initializable {
             questionsFourButton.setText((String) (game.getCategoryOne().get(randomQuestions.get(0)).get(randomOptions.get(3))));
             scoreText.setText("Puntaje: " + game.getTotalScore());
             roundText.setText("Ronda: " + game.getRound());
+            questionsNText.setText("Pregunta N°: "+game.getQuestion());
         }
     }
 
@@ -299,10 +301,10 @@ public class SabelotodoController implements Initializable {
 
     //método botón de respuesta 1
     public void onAnswerOneButtonClick(ActionEvent event) {
-        int question = game.getQuestion();
         ArrayList<List> temp;
         if (questionsOneButton.getText().equals(validator)) {
             randomOptions = game.randomOptions();
+            int question = game.getQuestion();
             int c = randomOptions.indexOf(1);
             System.out.println(c);
             if(game.getRound()>5){
@@ -329,6 +331,7 @@ public class SabelotodoController implements Initializable {
                 questionsFourButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(3))));
                 scoreText.setText("Puntaje: " + game.getTotalScore());
                 roundText.setText("Ronda: " + game.getRound());
+                questionsNText.setText("Pregunta N°: "+question);
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -344,10 +347,10 @@ public class SabelotodoController implements Initializable {
 
     //método botón de respuesta 2
     public void onAnswerTwoButtonClick(ActionEvent event) {
-        int question = game.getQuestion();
         ArrayList<List> temp;
         if (questionsTwoButton.getText().equals(validator)) {
             randomOptions = game.randomOptions();
+            int question = game.getQuestion();
             int c = randomOptions.indexOf(1);
             System.out.println(c);
             if(game.getRound()>5){
@@ -374,6 +377,7 @@ public class SabelotodoController implements Initializable {
                 questionsFourButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(3))));
                 scoreText.setText("Puntaje: " + game.getTotalScore());
                 roundText.setText("Ronda: " + game.getRound());
+                questionsNText.setText("Pregunta N°: "+question);
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -389,10 +393,10 @@ public class SabelotodoController implements Initializable {
 
     //método botón de respuesta 3
     public void onAnswerThreeButtonClick(ActionEvent event) {
-        int question = game.getQuestion();
         ArrayList<List> temp;
         if (questionsThreeButton.getText().equals(validator)) {
             randomOptions = game.randomOptions();
+            int question = game.getQuestion();
             int c = randomOptions.indexOf(1);
             if(game.getRound()>5){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -419,6 +423,7 @@ public class SabelotodoController implements Initializable {
                 questionsFourButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(3))));
                 scoreText.setText("Puntaje: " + game.getTotalScore());
                 roundText.setText("Ronda: " + game.getRound());
+                questionsNText.setText("Pregunta N°: "+question);
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -434,10 +439,10 @@ public class SabelotodoController implements Initializable {
 
     //método botón de respuesta 4
     public void onAnswerFourButtonClick(ActionEvent event) {
-        int question = game.getQuestion();
         ArrayList<List> temp;
         if (questionsFourButton.getText().equals(validator)) {
             randomOptions = game.randomOptions();
+            int question = game.getQuestion();
             int c = randomOptions.indexOf(1);
             System.out.println(c);
             if(game.getRound()>5){
@@ -464,6 +469,7 @@ public class SabelotodoController implements Initializable {
                 questionsFourButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(3))));
                 scoreText.setText("Puntaje: " + game.getTotalScore());
                 roundText.setText("Ronda: " + game.getRound());
+                questionsNText.setText("Pregunta N°: "+question);
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

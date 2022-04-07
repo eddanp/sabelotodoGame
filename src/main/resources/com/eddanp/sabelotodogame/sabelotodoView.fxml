@@ -302,6 +302,11 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Text>
+            <Text fx:id="questionsNText" fill="#d70303" layoutX="215.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pregunta N°: 0" textAlignment="CENTER" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="6.1484375">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="settingsPanel" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow;" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
