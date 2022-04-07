@@ -110,8 +110,8 @@ public class SabelotodoController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         game = new Game();
-        this.url=location;
-        this.resource=resources;
+        this.url = location;
+        this.resource = resources;
         initialPanel.setVisible(true);
         homePanel.setVisible(true);
         registrationPanel.setVisible(false);
@@ -224,6 +224,13 @@ public class SabelotodoController implements Initializable {
             tempQuestion.add(threeFalseAnswerTextField.getText());
             tempQuestion.add(difficultyComboBox.getValue());
             game.addQuestions(tempQuestion);
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("***** EXCELENTE *****");
+            alert.setHeaderText(null);
+            alert.setContentText("Pregunta agregada con éxito");
+            alert.showAndWait();
+
             addQuestionAreaText.setText("");
             trueAnswerTextField.setText("");
             oneFalseAnswerTextField.setText("");
@@ -255,7 +262,6 @@ public class SabelotodoController implements Initializable {
             alert.setTitle("***** Error *****");
             alert.setHeaderText(null);
             alert.setContentText("Verifique que ha llenado todos los campos");
-
             alert.showAndWait();
         } else {
             registrationPanel.setVisible(false);
@@ -299,22 +305,31 @@ public class SabelotodoController implements Initializable {
             randomOptions = game.randomOptions();
             int c = randomOptions.indexOf(1);
             System.out.println(c);
-            temp = switch (game.getRound()) {
-                case 1 -> game.getCategoryOne();
-                case 2 -> game.getCategoryTwo();
-                case 3 -> game.getCategoryThree();
-                case 4 -> game.getCategoryFour();
-                case 5 -> game.getCategoryFive();
-                default -> new ArrayList<>();
-            };
-            validator = (String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(c)));
-            questionsText.setText((String) (temp.get(randomQuestions.get(question - 1)).get(0)));
-            questionsOneButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(0))));
-            questionsTwoButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(1))));
-            questionsThreeButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(2))));
-            questionsFourButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(3))));
-            scoreText.setText("Puntaje: " + game.getTotalScore());
-            roundText.setText("Ronda: " + game.getRound());
+            if(game.getRound()>5){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("***** GANASTE *****");
+                alert.setHeaderText("Eres un Ganador");
+                alert.setContentText("Puntaje Obtenido: " + game.getTotalScore() + "/1000");
+                alert.showAndWait();
+                this.initialize(url, resource);
+            }else {
+                temp = switch (game.getRound()) {
+                    case 1 -> game.getCategoryOne();
+                    case 2 -> game.getCategoryTwo();
+                    case 3 -> game.getCategoryThree();
+                    case 4 -> game.getCategoryFour();
+                    case 5 -> game.getCategoryFive();
+                    default -> new ArrayList<>();
+                };
+                validator = (String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(c)));
+                questionsText.setText((String) (temp.get(randomQuestions.get(question - 1)).get(0)));
+                questionsOneButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(0))));
+                questionsTwoButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(1))));
+                questionsThreeButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(2))));
+                questionsFourButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(3))));
+                scoreText.setText("Puntaje: " + game.getTotalScore());
+                roundText.setText("Ronda: " + game.getRound());
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("***** Lo Sentimos, Ha perdido *****");
@@ -323,7 +338,7 @@ public class SabelotodoController implements Initializable {
             alert.showAndWait();
             gamePanel.setVisible(false);
             homePanel.setVisible(true);
-            this.initialize(url,resource);
+            this.initialize(url, resource);
         }
     }
 
@@ -335,22 +350,31 @@ public class SabelotodoController implements Initializable {
             randomOptions = game.randomOptions();
             int c = randomOptions.indexOf(1);
             System.out.println(c);
-            temp = switch (game.getRound()) {
-                case 1 -> game.getCategoryOne();
-                case 2 -> game.getCategoryTwo();
-                case 3 -> game.getCategoryThree();
-                case 4 -> game.getCategoryFour();
-                case 5 -> game.getCategoryFive();
-                default -> new ArrayList<>();
-            };
-            validator = (String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(c)));
-            questionsText.setText((String) (temp.get(randomQuestions.get(question - 1)).get(0)));
-            questionsOneButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(0))));
-            questionsTwoButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(1))));
-            questionsThreeButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(2))));
-            questionsFourButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(3))));
-            scoreText.setText("Puntaje: " + game.getTotalScore());
-            roundText.setText("Ronda: " + game.getRound());
+            if(game.getRound()>5){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("***** GANASTE *****");
+                alert.setHeaderText("Eres un Ganador");
+                alert.setContentText("Puntaje Obtenido: " + game.getTotalScore() + "/1000");
+                alert.showAndWait();
+                this.initialize(url, resource);
+            }else {
+                temp = switch (game.getRound()) {
+                    case 1 -> game.getCategoryOne();
+                    case 2 -> game.getCategoryTwo();
+                    case 3 -> game.getCategoryThree();
+                    case 4 -> game.getCategoryFour();
+                    case 5 -> game.getCategoryFive();
+                    default -> new ArrayList<>();
+                };
+                validator = (String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(c)));
+                questionsText.setText((String) (temp.get(randomQuestions.get(question - 1)).get(0)));
+                questionsOneButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(0))));
+                questionsTwoButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(1))));
+                questionsThreeButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(2))));
+                questionsFourButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(3))));
+                scoreText.setText("Puntaje: " + game.getTotalScore());
+                roundText.setText("Ronda: " + game.getRound());
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("***** Lo Sentimos, Ha perdido *****");
@@ -359,7 +383,7 @@ public class SabelotodoController implements Initializable {
             alert.showAndWait();
             gamePanel.setVisible(false);
             homePanel.setVisible(true);
-            this.initialize(url,resource);
+            this.initialize(url, resource);
         }
     }
 
@@ -370,23 +394,32 @@ public class SabelotodoController implements Initializable {
         if (questionsThreeButton.getText().equals(validator)) {
             randomOptions = game.randomOptions();
             int c = randomOptions.indexOf(1);
-            System.out.println(c);
-            temp = switch (game.getRound()) {
-                case 1 -> game.getCategoryOne();
-                case 2 -> game.getCategoryTwo();
-                case 3 -> game.getCategoryThree();
-                case 4 -> game.getCategoryFour();
-                case 5 -> game.getCategoryFive();
-                default -> new ArrayList<>();
-            };
-            validator = (String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(c)));
-            questionsText.setText((String) (temp.get(randomQuestions.get(question - 1)).get(0)));
-            questionsOneButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(0))));
-            questionsTwoButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(1))));
-            questionsThreeButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(2))));
-            questionsFourButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(3))));
-            scoreText.setText("Puntaje: " + game.getTotalScore());
-            roundText.setText("Ronda: " + game.getRound());
+            if(game.getRound()>5){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("***** GANASTE *****");
+                alert.setHeaderText("Eres un Ganador");
+                alert.setContentText("Puntaje Obtenido: " + game.getTotalScore() + "/1000");
+                alert.showAndWait();
+                this.initialize(url, resource);
+            }else {
+                System.out.println(c);
+                temp = switch (game.getRound()) {
+                    case 1 -> game.getCategoryOne();
+                    case 2 -> game.getCategoryTwo();
+                    case 3 -> game.getCategoryThree();
+                    case 4 -> game.getCategoryFour();
+                    case 5 -> game.getCategoryFive();
+                    default -> new ArrayList<>();
+                };
+                validator = (String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(c)));
+                questionsText.setText((String) (temp.get(randomQuestions.get(question - 1)).get(0)));
+                questionsOneButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(0))));
+                questionsTwoButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(1))));
+                questionsThreeButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(2))));
+                questionsFourButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(3))));
+                scoreText.setText("Puntaje: " + game.getTotalScore());
+                roundText.setText("Ronda: " + game.getRound());
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("***** Lo Sentimos, Ha perdido *****");
@@ -395,7 +428,7 @@ public class SabelotodoController implements Initializable {
             alert.showAndWait();
             gamePanel.setVisible(false);
             homePanel.setVisible(true);
-            this.initialize(url,resource);
+            this.initialize(url, resource);
         }
     }
 
@@ -407,22 +440,31 @@ public class SabelotodoController implements Initializable {
             randomOptions = game.randomOptions();
             int c = randomOptions.indexOf(1);
             System.out.println(c);
-            temp = switch (game.getRound()) {
-                case 1 -> game.getCategoryOne();
-                case 2 -> game.getCategoryTwo();
-                case 3 -> game.getCategoryThree();
-                case 4 -> game.getCategoryFour();
-                case 5 -> game.getCategoryFive();
-                default -> new ArrayList<>();
-            };
-            validator = (String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(c)));
-            questionsText.setText((String) (temp.get(randomQuestions.get(question - 1)).get(0)));
-            questionsOneButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(0))));
-            questionsTwoButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(1))));
-            questionsThreeButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(2))));
-            questionsFourButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(3))));
-            scoreText.setText("Puntaje: " + game.getTotalScore());
-            roundText.setText("Ronda: " + game.getRound());
+            if(game.getRound()>5){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("***** GANASTE *****");
+                alert.setHeaderText("Eres un Ganador");
+                alert.setContentText("Puntaje Obtenido: " + game.getTotalScore() + "/1000");
+                alert.showAndWait();
+                this.initialize(url, resource);
+            }else {
+                temp = switch (game.getRound()) {
+                    case 1 -> game.getCategoryOne();
+                    case 2 -> game.getCategoryTwo();
+                    case 3 -> game.getCategoryThree();
+                    case 4 -> game.getCategoryFour();
+                    case 5 -> game.getCategoryFive();
+                    default -> new ArrayList<>();
+                };
+                validator = (String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(c)));
+                questionsText.setText((String) (temp.get(randomQuestions.get(question - 1)).get(0)));
+                questionsOneButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(0))));
+                questionsTwoButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(1))));
+                questionsThreeButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(2))));
+                questionsFourButton.setText((String) (temp.get(randomQuestions.get(question - 1)).get(randomOptions.get(3))));
+                scoreText.setText("Puntaje: " + game.getTotalScore());
+                roundText.setText("Ronda: " + game.getRound());
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("***** Lo Sentimos, Ha perdido *****");
@@ -431,7 +473,7 @@ public class SabelotodoController implements Initializable {
             alert.showAndWait();
             gamePanel.setVisible(false);
             homePanel.setVisible(true);
-            this.initialize(url,resource);
+            this.initialize(url, resource);
         }
     }
 
