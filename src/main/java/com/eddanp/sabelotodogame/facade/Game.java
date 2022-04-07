@@ -99,6 +99,7 @@ public class Game {
     public ArrayList<Integer> randomQuestions(int n){
         this.n=n;
         ArrayList<Integer> random;
+        ArrayList<Integer> temp;
         switch (n){
             case 1:
                 random = new ArrayList<>();
@@ -110,132 +111,176 @@ public class Game {
                 break;
             case 2:
                 random = new ArrayList<>();
-                while (random.size()<=2){
+                temp =new ArrayList<>();
+                while (random.size()<2){
                     int x=(int)(Math.random()*categoryOne.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
-                while (random.size()<=4 && random.size()>=2){
+                temp.clear();
+                while (random.size()<4 && random.size()>=2){
                     int x=(int)(Math.random()*categoryTwo.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
-                while (random.size()<=6 && random.size()>=4){
+                temp.clear();
+                while (random.size()<6 && random.size()>=4){
                     int x=(int)(Math.random()*categoryThree.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
-                while (random.size()<=8 && random.size()>=6){
+                temp.clear();
+                while (random.size()<8 && random.size()>=6){
                     int x=(int)(Math.random()*categoryFour.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
-                while (random.size()<=10 && random.size()>=8){
+                temp.clear();
+                while (random.size()<10 && random.size()>=8){
                     int x=(int)(Math.random()*categoryFive.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
+                break;
             case 3:
                 random = new ArrayList<>();
-                while (random.size()<=3){
+                temp =new ArrayList<>();
+                while (random.size()<3){
                     int x=(int)(Math.random()*categoryOne.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
-                while (random.size()<=6 && random.size()>=3){
+                temp.clear();
+                while (random.size()<6 && random.size()>=3){
                     int x=(int)(Math.random()*categoryTwo.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
-                while (random.size()<=9 && random.size()>=6){
+                temp.clear();
+                while (random.size()<9 && random.size()>=6){
                     int x=(int)(Math.random()*categoryThree.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
-                while (random.size()<=12 && random.size()>=9){
+                temp.clear();
+                while (random.size()<12 && random.size()>=9){
                     int x=(int)(Math.random()*categoryFour.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
-                while (random.size()<=15 && random.size()>=12){
+                temp.clear();
+                while (random.size()<15 && random.size()>=12){
                     int x=(int)(Math.random()*categoryFive.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
+                break;
             case 4:
                 random = new ArrayList<>();
-                while (random.size()<=4){
+                temp =new ArrayList<>();
+                while (random.size()<4){
                     int x=(int)(Math.random()*categoryOne.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
-                while (random.size()<=8 && random.size()>=4){
+                temp.clear();
+                while (random.size()<8 && random.size()>=4){
                     int x=(int)(Math.random()*categoryTwo.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
-                while (random.size()<=12 && random.size()>=8){
+                temp.clear();
+                while (random.size()<12 && random.size()>=8){
                     int x=(int)(Math.random()*categoryThree.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
-                while (random.size()<=16 && random.size()>=12){
+                temp.clear();
+                while (random.size()<16 && random.size()>=12){
                     int x=(int)(Math.random()*categoryFour.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
-                while (random.size()<=20 && random.size()>=16){
+                temp.clear();
+                while (random.size()<20 && random.size()>=16){
                     int x=(int)(Math.random()*categoryFive.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
+                break;
             case 5:
                 random = new ArrayList<>();
-                while (random.size()<=5){
+                temp = new ArrayList<>();
+                while (random.size()<5){
                     int x=(int)(Math.random()*categoryOne.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
-                while (random.size()<=10 && random.size()>=5){
+                temp.clear();
+                while (random.size()<10 && random.size()>=5){
                     int x=(int)(Math.random()*categoryTwo.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
-                while (random.size()<=15 && random.size()>=10){
+                temp.clear();
+                while (random.size()<15 && random.size()>=10){
                     int x=(int)(Math.random()*categoryThree.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
-                while (random.size()<=20 && random.size()>=15){
+                temp.clear();
+                while (random.size()<20 && random.size()>=15){
                     int x=(int)(Math.random()*categoryFour.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
-                while (random.size()<=25 && random.size()>=20){
+                temp.clear();
+                while (random.size()<25 && random.size()>=20){
                     int x=(int)(Math.random()*categoryFive.size());
-                    if(!random.contains(x)){
+                    if(!temp.contains(x)){
+                        temp.add(x);
                         random.add(x);
                     }
                 }
+                break;
             default:
                 random = new ArrayList<>();
         }
@@ -267,28 +312,28 @@ public class Game {
                 round = round + 1;
             }
             case 2 -> {
-                if (question == 1 || question == 3 || question == 5 || question == 7 || question == 9) {
+                if (question == 1 || question == 3 || question == 5 || question == 7 || question == 9||question==11) {
                     round = round + 1;
                 }
                 int[] scoreTwo = score.getScoreTwo();
                 totalScore = totalScore + scoreTwo[question-1];
             }
             case 3 -> {
-                if (question == 1 || question == 4 || question == 7 || question == 10 || question == 13) {
+                if (question == 1 || question == 4 || question == 7 || question == 10 || question == 13 || question == 16) {
                     round = round + 1;
                 }
                 int[] scoreThree = score.getScoreThree();
                 totalScore = totalScore + scoreThree[question-1];
             }
             case 4 -> {
-                if (question == 1 || question == 5 || question == 9 || question == 13 || question == 17) {
+                if (question == 1 || question == 5 || question == 9 || question == 13 || question == 17|| question == 21) {
                     round = round + 1;
                 }
                 int[] scoreFour = score.getScoreFour();
                 totalScore = totalScore + scoreFour[question-1];
             }
             case 5 -> {
-                if (question == 1 || question == 6 || question == 11 || question == 16 || question == 21) {
+                if (question == 1 || question == 6 || question == 11 || question == 16 || question == 21|| question == 26) {
                     round = round + 1;
                 }
                 int[] scoreFive = score.getScoreFive();

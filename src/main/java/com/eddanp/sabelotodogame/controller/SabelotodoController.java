@@ -91,7 +91,7 @@ public class SabelotodoController implements Initializable {
     @FXML
     private ComboBox questionsRoundComboBox;
     ObservableList<Integer> questionsRound =
-            FXCollections.observableArrayList(1);
+            FXCollections.observableArrayList(1,2,3,4,5);
 
     //atributos panel de juego
     @FXML
