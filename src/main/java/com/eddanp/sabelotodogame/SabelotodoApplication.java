@@ -2,6 +2,7 @@ package com.eddanp.sabelotodogame;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -11,9 +12,9 @@ import java.io.IOException;
 public class SabelotodoApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SabelotodoApplication.class.getResource("sabelotodoView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.initStyle(StageStyle.UTILITY);
+        Parent root = FXMLLoader.load(getClass().getResource("sabelotodoView.fxml"));
+        Scene scene = new Scene(root);
+        stage.initStyle(StageStyle.UNIFIED);
         stage.setTitle("***** Sabelotodo *****");
         stage.setScene(scene);
         stage.show();

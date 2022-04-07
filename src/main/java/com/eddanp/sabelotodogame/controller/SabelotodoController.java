@@ -12,14 +12,16 @@ import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class SabelotodoController implements Initializable {
 
     // atributos globales
     Game game = new Game();
-    int[] randomQuestions;
+    ArrayList<Integer> randomQuestions;
     ArrayList<Integer> randomOptions;
+    String validator;
 
     //atributos AnchorPane
     @FXML private AnchorPane initialPanel;
@@ -192,24 +194,36 @@ public class SabelotodoController implements Initializable {
 
     //método botón aceptar juego
     public void onAcceptGameButtonClick(ActionEvent event){
-        registrationPanel.setVisible(false);
-        gamePanel.setVisible(true);
-        game.setName(nameGamerTextField.getText());
-        randomQuestions = game.randomQuestions((int)(questionsRoundComboBox.getValue()));
-        randomOptions=game.randomOptions();
-        for (int i = 0; i < randomQuestions.length; i++) {
-            System.out.println(randomQuestions[i]);
+        if(nameGamerTextField.getText().isBlank() || questionsRoundComboBox.getValue()==null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("***** Error *****");
+            alert.setHeaderText(null);
+            alert.setContentText("Verifique que ha llenado todos los campos");
+
+            alert.showAndWait();
+        }else {
+            registrationPanel.setVisible(false);
+            gamePanel.setVisible(true);
+            game.setName(nameGamerTextField.getText());
+            randomQuestions = game.randomQuestions((int) (questionsRoundComboBox.getValue()));
+            randomOptions = game.randomOptions();
+            for (int i = 0; i < randomQuestions.size(); i++) {
+                System.out.println(randomQuestions.get(i));
+            }
+            for (int i = 0; i < randomOptions.size(); i++) {
+                System.out.println(randomOptions.get(i));
+            }
+            int c = randomOptions.indexOf(1);
+            System.out.println(c);
+            validator = (String) (game.getCategoryOne().get(randomQuestions.get(0)).get(randomOptions.get(c)));
+            questionsText.setText((String) (game.getCategoryOne().get(randomQuestions.get(0)).get(0)));
+            questionsOneButton.setText((String) (game.getCategoryOne().get(randomQuestions.get(0)).get(randomOptions.get(0))));
+            questionsTwoButton.setText((String) (game.getCategoryOne().get(randomQuestions.get(0)).get(randomOptions.get(1))));
+            questionsThreeButton.setText((String) (game.getCategoryOne().get(randomQuestions.get(0)).get(randomOptions.get(2))));
+            questionsFourButton.setText((String) (game.getCategoryOne().get(randomQuestions.get(0)).get(randomOptions.get(3))));
+            scoreText.setText("Puntaje: " + game.getTotalScore());
+            roundText.setText("Ronda: " + game.getRound());
         }
-        for (int i = 0; i < randomOptions.size(); i++) {
-            System.out.println(randomOptions.get(i));
-        }
-        questionsText.setText((String)(game.getCategoryOne().get(randomQuestions[0]).get(0)));
-        questionsOneButton.setText((String)(game.getCategoryOne().get(randomQuestions[0]).get(randomOptions.get(0))));
-        questionsTwoButton.setText((String)(game.getCategoryOne().get(randomQuestions[0]).get(randomOptions.get(1))));
-        questionsThreeButton.setText((String)(game.getCategoryOne().get(randomQuestions[0]).get(randomOptions.get(2))));
-        questionsFourButton.setText((String)(game.getCategoryOne().get(randomQuestions[0]).get(randomOptions.get(3))));
-        scoreText.setText("Puntaje: "+game.getTotalScore());
-        roundText.setText("Ronda: "+game.getRound());
     }
 
     //método bonton volver a home desde panel de registro jugador
@@ -222,6 +236,118 @@ public class SabelotodoController implements Initializable {
     }
     //método botón de respuesta 1
     public void onAnswerOneButtonClick(ActionEvent event){
-
+        int question=game.getQuestion();
+        ArrayList<List> temp;
+        if(questionsOneButton.getText().equals(validator)){
+            randomOptions=game.randomOptions();
+            int c= randomOptions.indexOf(1);
+            System.out.println(c);
+            temp = switch (game.getRound()) {
+                case 1 -> game.getCategoryOne();
+                case 2 -> game.getCategoryTwo();
+                case 3 -> game.getCategoryThree();
+                case 4 -> game.getCategoryFour();
+                case 5 -> game.getCategoryFive();
+                default -> new ArrayList<>();
+            };
+            validator=(String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(c)));
+            questionsText.setText((String)(temp.get(randomQuestions.get(question-1)).get(0)));
+            questionsOneButton.setText((String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(0))));
+            questionsTwoButton.setText((String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(1))));
+            questionsThreeButton.setText((String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(2))));
+            questionsFourButton.setText((String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(3))));
+            scoreText.setText("Puntaje: "+game.getTotalScore());
+            roundText.setText("Ronda: "+game.getRound());
+        }else{
+            System.out.println("se jodio");
+        }
     }
+
+    //método botón de respuesta 2
+    public void onAnswerTwoButtonClick(ActionEvent event){
+        int question=game.getQuestion();
+        ArrayList<List> temp;
+        if(questionsTwoButton.getText().equals(validator)){
+            randomOptions=game.randomOptions();
+            int c= randomOptions.indexOf(1);
+            System.out.println(c);
+            temp = switch (game.getRound()) {
+                case 1 -> game.getCategoryOne();
+                case 2 -> game.getCategoryTwo();
+                case 3 -> game.getCategoryThree();
+                case 4 -> game.getCategoryFour();
+                case 5 -> game.getCategoryFive();
+                default -> new ArrayList<>();
+            };
+            validator=(String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(c)));
+            questionsText.setText((String)(temp.get(randomQuestions.get(question-1)).get(0)));
+            questionsOneButton.setText((String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(0))));
+            questionsTwoButton.setText((String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(1))));
+            questionsThreeButton.setText((String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(2))));
+            questionsFourButton.setText((String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(3))));
+            scoreText.setText("Puntaje: "+game.getTotalScore());
+            roundText.setText("Ronda: "+game.getRound());
+        }else{
+            System.out.println("se jodio");
+        }
+    }
+
+    //método botón de respuesta 3
+    public void onAnswerThreeButtonClick(ActionEvent event){
+        int question=game.getQuestion();
+        ArrayList<List> temp;
+        if(questionsThreeButton.getText().equals(validator)){
+            randomOptions=game.randomOptions();
+            int c= randomOptions.indexOf(1);
+            System.out.println(c);
+            temp = switch (game.getRound()) {
+                case 1 -> game.getCategoryOne();
+                case 2 -> game.getCategoryTwo();
+                case 3 -> game.getCategoryThree();
+                case 4 -> game.getCategoryFour();
+                case 5 -> game.getCategoryFive();
+                default -> new ArrayList<>();
+            };
+            validator=(String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(c)));
+            questionsText.setText((String)(temp.get(randomQuestions.get(question-1)).get(0)));
+            questionsOneButton.setText((String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(0))));
+            questionsTwoButton.setText((String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(1))));
+            questionsThreeButton.setText((String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(2))));
+            questionsFourButton.setText((String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(3))));
+            scoreText.setText("Puntaje: "+game.getTotalScore());
+            roundText.setText("Ronda: "+game.getRound());
+        }else{
+            System.out.println("se jodio");
+        }
+    }
+
+    //método botón de respuesta 4
+    public void onAnswerFourButtonClick(ActionEvent event){
+        int question=game.getQuestion();
+        ArrayList<List> temp;
+        if(questionsFourButton.getText().equals(validator)){
+            randomOptions=game.randomOptions();
+            int c= randomOptions.indexOf(1);
+            System.out.println(c);
+            temp = switch (game.getRound()) {
+                case 1 -> game.getCategoryOne();
+                case 2 -> game.getCategoryTwo();
+                case 3 -> game.getCategoryThree();
+                case 4 -> game.getCategoryFour();
+                case 5 -> game.getCategoryFive();
+                default -> new ArrayList<>();
+            };
+            validator=(String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(c)));
+            questionsText.setText((String)(temp.get(randomQuestions.get(question-1)).get(0)));
+            questionsOneButton.setText((String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(0))));
+            questionsTwoButton.setText((String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(1))));
+            questionsThreeButton.setText((String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(2))));
+            questionsFourButton.setText((String)(temp.get(randomQuestions.get(question-1)).get(randomOptions.get(3))));
+            scoreText.setText("Puntaje: "+game.getTotalScore());
+            roundText.setText("Ronda: "+game.getRound());
+        }else{
+            System.out.println("se jodio");
+        }
+    }
+
 }
