@@ -68,9 +68,9 @@ public class FileOperations {
         File file = new File("questions.txt");
         FileWriter writer = null;
         try {
-            if(file.exists() && !file.isDirectory()){
+            if (file.exists() && !file.isDirectory()) {
                 writer = new FileWriter("questions.txt", true);
-            }else{
+            } else {
                 writer = new FileWriter("questions.txt");
             }
             BufferedWriter bufer = new BufferedWriter(writer);
@@ -101,13 +101,13 @@ public class FileOperations {
         File file = new File("history.txt");
         FileWriter writer = null;
         try {
-            if(file.exists() && !file.isDirectory()){
+            if (file.exists() && !file.isDirectory()) {
                 writer = new FileWriter("history.txt", true);
-            }else{
+            } else {
                 writer = new FileWriter("history.txt");
             }
             BufferedWriter bufer = new BufferedWriter(writer);
-            writer.write(name+" - " +score+" - \n");
+            writer.write(name + " - " + score + " - \n");
             bufer.close();
         } catch (IOException e) {
             e.printStackTrace();

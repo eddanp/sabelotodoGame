@@ -288,14 +288,7 @@ public class SabelotodoController implements Initializable {
             game.setName(nameGamerTextField.getText());
             randomQuestions = game.randomQuestions((int) (questionsRoundComboBox.getValue()));
             randomOptions = game.randomOptions();
-            for (int i = 0; i < randomQuestions.size(); i++) {
-                System.out.println(randomQuestions.get(i));
-            }
-            for (int i = 0; i < randomOptions.size(); i++) {
-                System.out.println(randomOptions.get(i));
-            }
             int c = randomOptions.indexOf(1);
-            System.out.println(c);
             validator = (String) (game.getCategoryOne().get(randomQuestions.get(0)).get(randomOptions.get(c)));
             questionsText.setText((String) (game.getCategoryOne().get(randomQuestions.get(0)).get(0)));
             questionsOneButton.setText((String) (game.getCategoryOne().get(randomQuestions.get(0)).get(randomOptions.get(0))));
@@ -324,7 +317,6 @@ public class SabelotodoController implements Initializable {
             randomOptions = game.randomOptions();
             int question = game.getQuestion();
             int c = randomOptions.indexOf(1);
-            System.out.println(c);
             if(game.getRound()>5){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("***** GANASTE *****");
@@ -358,8 +350,6 @@ public class SabelotodoController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Puntaje Obtenido: " + game.getTotalScore() + "/1000");
             alert.showAndWait();
-            gamePanel.setVisible(false);
-            homePanel.setVisible(true);
             game.historyFile();
             this.initialize(url, resource);
         }
@@ -372,7 +362,6 @@ public class SabelotodoController implements Initializable {
             randomOptions = game.randomOptions();
             int question = game.getQuestion();
             int c = randomOptions.indexOf(1);
-            System.out.println(c);
             if(game.getRound()>5){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("***** GANASTE *****");
@@ -406,8 +395,6 @@ public class SabelotodoController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Puntaje Obtenido: " + game.getTotalScore() + "/1000");
             alert.showAndWait();
-            gamePanel.setVisible(false);
-            homePanel.setVisible(true);
             game.historyFile();
             this.initialize(url, resource);
         }
@@ -429,7 +416,6 @@ public class SabelotodoController implements Initializable {
                 game.historyFile();
                 this.initialize(url, resource);
             }else {
-                System.out.println(c);
                 temp = switch (game.getRound()) {
                     case 1 -> game.getCategoryOne();
                     case 2 -> game.getCategoryTwo();
@@ -454,8 +440,6 @@ public class SabelotodoController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Puntaje Obtenido: " + game.getTotalScore() + "/1000");
             alert.showAndWait();
-            gamePanel.setVisible(false);
-            homePanel.setVisible(true);
             game.historyFile();
             this.initialize(url, resource);
         }
@@ -468,7 +452,6 @@ public class SabelotodoController implements Initializable {
             randomOptions = game.randomOptions();
             int question = game.getQuestion();
             int c = randomOptions.indexOf(1);
-            System.out.println(c);
             if(game.getRound()>5){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("***** GANASTE *****");
@@ -502,11 +485,20 @@ public class SabelotodoController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Puntaje Obtenido: " + game.getTotalScore() + "/1000");
             alert.showAndWait();
-            gamePanel.setVisible(false);
-            homePanel.setVisible(true);
             game.historyFile();
             this.initialize(url, resource);
         }
+    }
+
+    //metodo boton rendirse
+    public void onFinishButtonClick(ActionEvent event){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("***** Lo Sentimos, Ha perdido *****");
+        alert.setHeaderText(null);
+        alert.setContentText("Puntaje Obtenido: " + game.getTotalScore() + "/1000");
+        alert.showAndWait();
+        game.historyFile();
+        this.initialize(url, resource);
     }
 
     //método boton historial
