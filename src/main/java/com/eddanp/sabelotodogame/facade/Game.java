@@ -311,6 +311,11 @@ public class Game {
         FileOperations.addHistory(name,totalScore);
     }
 
+    //método eliminar historico
+    public void deleteHistoryFile(){
+        FileOperations.deleteHistoryFile();
+    }
+
     public int getTotalScore() {
         return totalScore;
     }

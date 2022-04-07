@@ -512,4 +512,9 @@ public class SabelotodoController implements Initializable {
         homePanel.setVisible(true);
     }
 
+    //método eliminar archivo historico
+    public void onDeleteHistoryFile(ActionEvent event){
+        game.deleteHistoryFile();
+        this.initialize(url, resource);
+    }
 }
