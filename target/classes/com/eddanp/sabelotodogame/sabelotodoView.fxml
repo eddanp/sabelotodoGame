@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
@@ -293,7 +294,7 @@
                </font></Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="settingsPanel" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+      <AnchorPane fx:id="settingsPanel" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow;" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
          <children>
             <Text fill="#00bf4d" layoutX="169.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Configuración" AnchorPane.topAnchor="10.0">
                <font>
@@ -303,13 +304,13 @@
             <Pane layoutX="243.0" layoutY="55.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="310.0" AnchorPane.topAnchor="60.0">
                <children>
                   <Button fx:id="predefinedQuestionsButton" layoutX="26.0" layoutY="46.0" mnemonicParsing="false" onAction="#onPredefinedQuestionsFileClick" prefHeight="24.0" prefWidth="201.0" text="25 Preguntas Predefinidas " />
-                  <Button fx:id="generateQuestionsButton" layoutX="20.0" layoutY="85.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="213.0" text="Gererar Preguntas Personalizadas" />
+                  <Button fx:id="generateQuestionsButton" layoutX="3.0" layoutY="85.0" mnemonicParsing="false" onAction="#onGenerateQuestionsButtonClick" prefHeight="24.0" prefWidth="247.0" text="Agregar Preguntas Personalizadas" />
                   <Text fill="#64f564" layoutX="11.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generar Banco de Preguntas">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Text>
-                  <Button fx:id="deleteFileButton" layoutX="33.0" layoutY="124.0" mnemonicParsing="false" text="Eliminar Banco Preguntas" />
+                  <Button fx:id="deleteFileButton" layoutX="33.0" layoutY="124.0" mnemonicParsing="false" onAction="#onDeleteFileButton" text="Eliminar Banco Preguntas" />
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="310.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="60.0">
@@ -344,34 +345,116 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Text fx:id="categoryOneText" fill="#eb590b" layoutX="195.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="##">
+                  <Text fx:id="categoryOneText" fill="#eb590b" layoutX="195.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Text fx:id="categoryFiveText" fill="#eb590b" layoutX="195.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="##">
+                  <Text fx:id="categoryFiveText" fill="#eb590b" layoutX="195.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Text fx:id="categoryFourText" fill="#eb590b" layoutX="195.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="##">
+                  <Text fx:id="categoryFourText" fill="#eb590b" layoutX="195.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Text fx:id="categoryThreeText" fill="#eb590b" layoutX="195.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="##">
+                  <Text fx:id="categoryThreeText" fill="#eb590b" layoutX="195.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Text fx:id="categoryTwoText" fill="#eb590b" layoutX="195.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="##">
+                  <Text fx:id="categoryTwoText" fill="#eb590b" layoutX="195.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
                </children>
             </Pane>
-            <Button layoutX="257.0" layoutY="238.0" mnemonicParsing="false" text="Volver" />
+            <Button fx:id="returnHomeButton" layoutX="257.0" layoutY="238.0" mnemonicParsing="false" onAction="#onReturnHomeButtonClick" text="Volver" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="addQuestionsPanel" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black; -fx-border-color: yellow;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <Button fx:id="addQuestionButton" layoutX="122.0" layoutY="233.0" mnemonicParsing="false" onAction="#onAddQuestionButton" text="Agregar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="170.0" AnchorPane.topAnchor="230.0">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <TextField fx:id="trueAnswerTextField" layoutX="68.0" layoutY="125.0" promptText="Respuesta verdadera" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="120.0">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </TextField>
+            <TextArea fx:id="addQuestionAreaText" layoutX="173.0" layoutY="-29.0" prefHeight="200.0" prefWidth="200.0" promptText="Escriba la pregunta" wrapText="true" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </TextArea>
+            <Text fill="#06dd1f" layoutX="186.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Pregunta">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text fill="#06dd1f" layoutX="89.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Respuesta Verdadera">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text fill="#db0707" layoutX="339.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Respuesta Incorrecta">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text fill="#db0707" layoutX="89.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Respuesta Incorrecta">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <TextField fx:id="oneFalseAnswerTextField" layoutX="327.0" layoutY="130.0" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="120.0">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="twoFalseAnswerTextField" layoutX="89.0" layoutY="191.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="180.0" />
+            <TextField fx:id="threeFalseAnswerTextField" layoutX="327.0" layoutY="185.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="180.0" />
+            <Text fill="#db0707" layoutX="339.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Respuesta Incorrecta">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Button fx:id="cancelAddQuestionButton" layoutX="370.0" layoutY="232.0" mnemonicParsing="false" onAction="#onCancelAddQuestionButtonClick" text="Cancelar" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="230.0">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Text fill="#06dd1f" layoutX="50.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dificultad" wrappingWidth="78.6015625">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="difficultyComboBox" layoutX="123.0" layoutY="235.0" prefHeight="24.0" prefWidth="79.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="122.0" AnchorPane.rightAnchor="372.0" AnchorPane.topAnchor="234.0" />
          </children>
       </AnchorPane>
    </children>
